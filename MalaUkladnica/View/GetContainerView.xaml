@@ -1,0 +1,73 @@
+﻿<Page x:Class="MalaUkladnica.View.GetContainerView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MalaUkladnica.View"
+      xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+      mc:Ignorable="d"
+      DataContext="{Binding GetContainer, Source={StaticResource Locator} }"  
+        Title="GetContainerView" Height="auto" Width="auto" Background="White"
+      >
+    <Border BorderBrush="Gray" BorderThickness="1">
+        <StackPanel>
+            <Label 
+                Name="lblContainerNumber"
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Top" 
+                Margin="5"  
+                Content="{Binding Path=LabelContainerNumber, Source={StaticResource Resources}}">                
+            </Label>
+            
+            <Controls:NumericUpDown 
+                Name="btnUpDown"
+                Interval="1" 
+                StringFormat="{}{0:###0}"  
+                Width="159" Margin="10" 
+                Value="{Binding ContainerId, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
+                />
+            
+            <StackPanel>
+                <Label 
+                    Name="lblDestinationForController"
+                    Width="148" 
+                    HorizontalAlignment="Left" 
+                    Margin="5"  
+                    Content="{Binding Path=LabelDestinationForController, Source={StaticResource Resources}}" >                    
+                </Label>
+                <Controls:SplitButton  
+                        HorizontalAlignment="Left"
+                        Margin="5"
+                        Name="btnDropDown"                                     
+                        ItemsSource="{Binding Path=DriverTarget}" 
+                        SelectedItem="{Binding SelectedValue}" 
+                        Width="103" 
+                        
+                 />
+
+
+
+                <CheckBox   
+                    Name="chkBoxPriority"
+                    Content="{Binding Path=LabelPriority, Source={StaticResource Resources}}" 
+                    Width="88" Height="32" 
+                    HorizontalAlignment="Left" 
+                    Margin="5"
+                    Command="{Binding PriorityCommand}"
+                    IsChecked="{Binding Path=IsCheckedPriority, Mode=TwoWay}"
+                    />
+            </StackPanel>
+            
+
+            <Button  
+                Name="btnDowloandContainer"
+                Style="{StaticResource AccentedSquareButtonStyle}"  
+                Content="{Binding Path=ButtonDowloandContainer, Source={StaticResource Resources}}" 
+                Width="250" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Bottom" 
+                Margin="10" Padding="10" 
+                Command="{Binding GetCommand}" />         
+        </StackPanel>
+    </Border>
+</Page>

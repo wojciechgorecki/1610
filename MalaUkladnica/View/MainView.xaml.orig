@@ -1,0 +1,59 @@
+﻿<Controls:MetroWindow x:Class="MalaUkladnica.View.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MalaUkladnica.View"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        mc:Ignorable="d"
+<<<<<<< HEAD
+        GlowBrush="{DynamicResource AccentColorBrush}"
+        BorderThickness="1"
+        WindowStartupLocation="CenterScreen"
+                      
+                      
+                      
+        Title="MałaUkładnica" Height="800" Width="800">
+    <Grid  >
+
+
+        <TabControl>
+            <TabItem Header="Operacje na kontenerach">
+                <Border BorderBrush="Gray" BorderThickness="1">
+                    <Grid  >
+
+                        <Grid.ColumnDefinitions  >
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*"/>
+                         
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition  Height="*"></RowDefinition>
+                      
+                        </Grid.RowDefinitions>
+
+                        <Frame Name="send" Source="SendContainerView.xaml" Grid.Column="0"  Grid.Row="0"  />
+                        <Frame Name="get" Source="GetContainerView.xaml" Grid.Column="1" Grid.Row="0" />
+                        <Frame Name="info" Source="GetContainerInfoView.xaml" Grid.Column="0"  Grid.Row="1"/>
+                        <Frame Name="delete" Source="DeleteContainerView.xaml" Grid.Column="1"  Grid.Row="1"/>
+
+
+                    </Grid>
+                </Border>
+            </TabItem>
+            <TabItem Header="Historia kontenera">
+                <Label>you</Label>
+            </TabItem>
+
+        </TabControl>
+
+
+=======
+        Title="MainWindow" Height="450" Width="800"
+        DataContext="{Binding Main, Source={StaticResource Locator}}"              >
+    <Grid Background="WhiteSmoke">
+        <TextBlock Text="test" />
+>>>>>>> 594a292eb96ca1ca2d6675f0e2007f3e3fcfb531
+    </Grid>
+</Controls:MetroWindow>
