@@ -22,22 +22,7 @@ namespace MalaUkladnica.Properties {
                 return defaultInstance;
             }
         }
-
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("5")]
-        public string PoolSize
-        {
-            get
-            {
-                return ((string)(this["PoolSize"]));
-            }
-            set
-            {
-                this["PoolSize"] = value;
-            }
-        }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("pl-PL")]
@@ -47,6 +32,18 @@ namespace MalaUkladnica.Properties {
             }
             set {
                 this["Language"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public string PoolSize {
+            get {
+                return ((string)(this["PoolSize"]));
+            }
+            set {
+                this["PoolSize"] = value;
             }
         }
     }
