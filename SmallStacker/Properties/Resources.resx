@@ -187,7 +187,7 @@
     <value>Операціі на контейнері</value>
   </data>
   <data name="LabelContainerNumber" xml:space="preserve">
-    <value>Номер контейнеру</value>
+    <value>Контейнер №</value>
   </data>
   <data name="LabelDataFrom" xml:space="preserve">
     <value>Дата від</value>

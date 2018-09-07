@@ -268,7 +268,7 @@ namespace SmallStacker.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Номер контейнеру.
+        ///   Looks up a localized string similar to Контейнер №.
         /// </summary>
         public static string LabelContainerNumber {
             get {

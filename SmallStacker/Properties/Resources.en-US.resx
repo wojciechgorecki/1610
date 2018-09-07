@@ -188,7 +188,7 @@
     <value>Container operation</value>
   </data>
   <data name="LabelContainerNumber" xml:space="preserve">
-    <value>Container number</value>
+    <value>Container no.</value>
   </data>
   <data name="LabelDataFrom" xml:space="preserve">
     <value>Data from:</value>
