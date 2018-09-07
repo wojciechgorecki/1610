@@ -45,6 +45,7 @@
                         HorizontalAlignment="Left" 
                         VerticalAlignment="Center" 
                         Width="90"  
+                        
                         Content="{Binding Path=LabelContainerNumber, Source={StaticResource Resources}}" >                       
                     </Label>
                     
