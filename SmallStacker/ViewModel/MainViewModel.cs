@@ -1,17 +1,16 @@
 namespace SmallStacker.ViewModel
 {
-    using System;
-    using System.IO;
-    using System.Reflection;
-    using System.Windows.Forms;
     using GalaSoft.MvvmLight;
     using GalaSoft.MvvmLight.Messaging;
     using SmallStacker.Model;
     using SmallStacker.Resources;
     using SmallStacker.Resources.Langue;
     using SmallStacker.SAP;
-    using SmallStacker.SAP.Returns;
     using SmallStacker.Utills;
+    using System;
+    using System.IO;
+    using System.Reflection;
+    using System.Windows.Forms;
     using static SmallStacker.ViewModel.LogViewModel;
 
     /// <summary>
