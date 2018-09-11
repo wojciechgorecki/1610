@@ -1,4 +1,4 @@
-namespace SmallStacker.ViewModel
+ï»¿namespace SmallStacker.ViewModel
 {
     using AutoUpdaterDotNET;
     using GalaSoft.MvvmLight;
@@ -31,7 +31,7 @@ namespace SmallStacker.ViewModel
     public class MainViewModel : ViewModelBase
     {
         /// <summary>
-        /// zmienna przechowuj¹ca sciezke do katalogu domowego uzytkownika.
+        /// zmienna przechowujÂ¹ca sciezke do katalogu domowego uzytkownika.
         /// </summary>
         static string pathToUserDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "TME", "Mala Ukladnica");
 
@@ -60,13 +60,13 @@ namespace SmallStacker.ViewModel
         public string _pernr;
 
         /// <summary>
-        /// zmienna przechowuj¹ca tryb dostêpu do SAP PROD lub DEV
+        /// zmienna przechowujÂ¹ca tryb dostÃªpu do SAP PROD lub DEV
         /// </summary>
         public string _mode = "PROD";
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MainViewModel"/> class.
-        /// Konstruktor Klasy, przypisuje nazwe uzytkownika, wywo³uje <see cref="TME_SAPEntities.Init"/>, <see cref="initSap"/> oraz pobiera numer u¿ytkownika z SAP.
+        /// Konstruktor Klasy, przypisuje nazwe uzytkownika, wywoÂ³uje <see cref="TME_SAPEntities.Init"/>, <see cref="initSap"/> oraz pobiera numer uÂ¿ytkownika z SAP.
         /// </summary>
         public MainViewModel()
         {
@@ -78,17 +78,26 @@ namespace SmallStacker.ViewModel
             Pernr = _pernr;
 
 
-            AutoUpdater.ReportErrors = false;
-            AutoUpdater.ShowSkipButton = false;
-            AutoUpdater.ShowRemindLaterButton = false;
-            AutoUpdater.RunUpdateAsAdmin = false;
-            AutoUpdater.ReportErrors = true;
-            DispatcherTimer timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(5) };
-            timer.Tick += delegate
+            try
             {
-                AutoUpdater.Start(@"\\ma01\Firma\ApplicationUpdates\SmallStacker\AutoUpdaterTest.xml");
-            };
-            timer.Start();
+                AutoUpdater.ReportErrors = false;
+                AutoUpdater.ShowSkipButton = false;
+                AutoUpdater.ShowRemindLaterButton = false;
+                AutoUpdater.RunUpdateAsAdmin = false;
+
+                DispatcherTimer timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(5) };
+                timer.Tick += delegate
+                {
+                    AutoUpdater.Start(@"\\ma01\Firma\ApplicationUpdates\SmallStacker\AutoUpdaterTest.xml");
+                    timer.Stop();
+                };
+                timer.Start();
+
+            }
+            catch (Exception ex)
+            {
+                Messenger.Default.Send(new LogMessage(ex.Message, LogType.ERROR), "Log");
+            }
 
         
 
@@ -132,7 +141,7 @@ namespace SmallStacker.ViewModel
         }
 
         /// <summary>
-        /// inicjalizuje zmienne potrzebne do po³¹czenia z baz¹ SAP, i rejestruje po³¹czenie z SAP.
+        /// inicjalizuje zmienne potrzebne do poÂ³Â¹czenia z bazÂ¹ SAP, i rejestruje poÂ³Â¹czenie z SAP.
         /// </summary>
         public void initSap()
         {
@@ -146,7 +155,7 @@ namespace SmallStacker.ViewModel
                 {
                //     MessageBox.Show("jesli str to null");
                     Messenger.Default.Send(new LogMessage("Nie znaleziono pliku konfiguracyjnego : " + ConfigFileName, LogType.ERROR), "Log");
-                    MessageBox.Show("Nie znaleziono pliku konfiguracyjnego\r\n " + ConfigFileName + "\r\nProgram zostanie zamkniêty");
+                    MessageBox.Show("Nie znaleziono pliku konfiguracyjnego\r\n " + ConfigFileName + "\r\nProgram zostanie zamkniÃªty");
                     Application.Exit();
                     return;
                 }
@@ -156,7 +165,7 @@ namespace SmallStacker.ViewModel
                 {
                  //   MessageBox.Show("ostatni if");
                     Messenger.Default.Send(new LogMessage("Uszkodzony plik konfiguracyjny : " + ConfigFileName, LogType.ERROR), "Log");
-                    MessageBox.Show("Uszkodzony plik konfiguracyjny\r\n " + ConfigFileName + "\r\nProgram zostanie zamkniêty");
+                    MessageBox.Show("Uszkodzony plik konfiguracyjny\r\n " + ConfigFileName + "\r\nProgram zostanie zamkniÃªty");
                     Application.Exit();
                     return;
                 }
@@ -170,7 +179,7 @@ namespace SmallStacker.ViewModel
                 if (passwordTest == string.Empty || userTest == string.Empty || password == string.Empty || user == string.Empty)
                 {
                     Messenger.Default.Send(new LogMessage(string.Concat(new string[] { "userTest: ", userTest, " passwordTest: ", passwordTest, "\r\ncuser: ", user, " password: ", password }), LogType.ERROR),"Log");
-                    MessageBox.Show("Nie uda³o siê odczytaæ danych z rejestru");
+                    MessageBox.Show("Nie udaÂ³o siÃª odczytaÃ¦ danych z rejestru");
                     Application.Exit();
                     return;
                 }
@@ -188,10 +197,10 @@ namespace SmallStacker.ViewModel
         }
 
         /// <summary>
-        ///  Metoda ³aduj¹ca plik konfiguracyjny <see cref="ConfigFileName"/> ze sciezki podanej jako parametr.
+        ///  Metoda Â³adujÂ¹ca plik konfiguracyjny <see cref="ConfigFileName"/> ze sciezki podanej jako parametr.
         /// </summary>
         /// <param name="filepath">Sciezka do pliku konfiguracyjnego</param>
-        /// <returns>Tablice zahaszowanych loginów i hase³ do bazy SAP.</returns>
+        /// <returns>Tablice zahaszowanych loginÃ³w i haseÂ³ do bazy SAP.</returns>
         private string[] LoadCFG(string filepath)
         {
             try
@@ -209,7 +218,7 @@ namespace SmallStacker.ViewModel
         }
 
         /// <summary>
-        /// Metoda pobieraj¹ca numer uzytkownika z bazy SAP, i zapisuj¹ca do zmiennej <see cref="_pernr"/> i wyswietla numer uzytkownika, w przypadku niepowodzenia zostaje wyswietlony komunikat o niepowodzeniu.
+        /// Metoda pobierajÂ¹ca numer uzytkownika z bazy SAP, i zapisujÂ¹ca do zmiennej <see cref="_pernr"/> i wyswietla numer uzytkownika, w przypadku niepowodzenia zostaje wyswietlony komunikat o niepowodzeniu.
         /// </summary>
         private void GeneratePerNr()
         {
@@ -221,7 +230,7 @@ namespace SmallStacker.ViewModel
                 {
                     "nie pobrano HR_Nr dla ",
                     Environment.UserName,
-                    " , kod b³edu: ",
+                    " , kod bÂ³edu: ",
                     ret
                 });
                 Messenger.Default.Send(new LogMessage(msgErr, LogType.ERROR),"Log");
