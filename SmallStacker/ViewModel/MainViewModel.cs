@@ -1,5 +1,6 @@
 namespace SmallStacker.ViewModel
 {
+    using AutoUpdaterDotNET;
     using GalaSoft.MvvmLight;
     using GalaSoft.MvvmLight.Messaging;
     using SmallStacker.Model;
@@ -8,9 +9,11 @@ namespace SmallStacker.ViewModel
     using SmallStacker.SAP;
     using SmallStacker.Utills;
     using System;
+    using System.Globalization;
     using System.IO;
     using System.Reflection;
     using System.Windows.Forms;
+    using System.Windows.Threading;
     using static SmallStacker.ViewModel.LogViewModel;
 
     /// <summary>
@@ -67,11 +70,27 @@ namespace SmallStacker.ViewModel
         /// </summary>
         public MainViewModel()
         {
+
             CultureResources.ChangeCulture(new System.Globalization.CultureInfo(Properties.Settings.Default.Language));
             TME_SAPEntities.Init();
             initSap();
             GeneratePerNr();
             Pernr = _pernr;
+
+
+            AutoUpdater.ReportErrors = false;
+            AutoUpdater.ShowSkipButton = false;
+            AutoUpdater.ShowRemindLaterButton = false;
+            AutoUpdater.RunUpdateAsAdmin = false;
+            AutoUpdater.ReportErrors = true;
+            DispatcherTimer timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(5) };
+            timer.Tick += delegate
+            {
+                AutoUpdater.Start(@"\\ma01\Firma\ApplicationUpdates\SmallStacker\AutoUpdaterTest.xml");
+            };
+            timer.Start();
+
+        
 
 
         }
@@ -195,6 +214,7 @@ namespace SmallStacker.ViewModel
         private void GeneratePerNr()
         {
             int ret = DriverSAP.Inst.GetPernr(_mode, Environment.UserName, out _pernr);
+   
             if (ret != 100)
             {
                 string msgErr = string.Concat(new object[]
