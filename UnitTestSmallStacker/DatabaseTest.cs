@@ -24,13 +24,13 @@ namespace UnitTestSmallStacker
         [TestMethod]
         public void Test_PositiveSearchID()
         {
-            Assert.AreEqual(dbController.IDExists(1), true);
+            Assert.AreEqual(dbController.IDExists(101), true);
         }
 
         [TestMethod]
         public void Test_NegativeSearchID()
         {
-            Assert.AreNotEqual(dbController.IDExists(33), true);
+            Assert.AreNotEqual(dbController.IDExists(1), true);
         }
 
         [TestMethod]
