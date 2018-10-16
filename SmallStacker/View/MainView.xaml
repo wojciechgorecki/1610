@@ -23,7 +23,7 @@
                 Content="{Binding AppVersion, Mode=OneWay}" />
             <Button Name="btnsUserandVersion">
                 <StackPanel Orientation="Horizontal">
-                    
+
                     <TextBlock 
                         Name="txtBlockUserName"
                         Margin="4 0 0 0"
@@ -41,13 +41,17 @@
 
 
     <Grid >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="659*"/>
+            <ColumnDefinition Width="32*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition  Height="3*"></RowDefinition>
             <RowDefinition  Height="0.15*"></RowDefinition>
         </Grid.RowDefinitions>
 
 
-        <TabControl Grid.Row="0">
+        <TabControl Grid.Row="0" Grid.ColumnSpan="2" Margin="0,0,0.2,0.2">
             <TabItem Header="{Binding Path=HeaderContainerOperation, Source={StaticResource Resources}}">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -82,7 +86,7 @@
                 </Grid>
 
             </TabItem>
-            
+
             <TabItem Header="{Binding Path=HeaderContainerHistory, Source={StaticResource Resources}}">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -90,7 +94,7 @@
                         <RowDefinition Height="1.3*"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    
+
                     <Frame Name="history" Source="HistoryView.xaml" Margin="5" />
                     <Frame Name="gethistory" Source="GetHistoryView.xaml" Grid.Row="1" Margin="5"/>
                     <Frame Name="log2" Source="LogView.xaml" Grid.Row="2" Margin="5"/>
@@ -101,7 +105,7 @@
 
         </TabControl>
 
-        <Grid Grid.Row="1" >
+        <Grid Grid.ColumnSpan="2" Margin="0,731,0.2,0" Grid.RowSpan="2" >
             <Frame Name="buttons" Source="ButtonsView.xaml" HorizontalAlignment="Right"/>
         </Grid>
 
